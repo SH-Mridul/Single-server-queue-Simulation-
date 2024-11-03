@@ -35,7 +35,7 @@ int main() {
       caIntTrac = static_cast<int>(ca * 1000)+1;
     }
     
-    intervalProbDataStore[7].second = 1000;
+    intervalProbDataStore[intervalSize-1].second = 1000;
     
     
     
@@ -75,7 +75,7 @@ int main() {
       disProbDataStore[i] = {disCaIntTrac,static_cast<int>(disCa * 100)};
       disCaIntTrac = static_cast<int>(disCa * 100)+1;
     }
-    
+    disProbDataStore[disDataSize-1].second = 100; 
     // Random digit arrival calculation 
     
     int randomDigitArrivalSize;
@@ -88,9 +88,9 @@ int main() {
       cin>>randomDigitArrivalData[i];
     }
     
-    cout<<"\n------------solution three------------"<<endl;
+    cout<<"\n---------solution three----------"<<endl;
     //caculating random digit arrival
-    cout<<"|\t c \t"<<"|\t R.d \t"<<"|\t t.b.a  |"<<endl;
+    cout<<"|\t C \t"<<"|\t R.D \t"<<"|\t T.B.A  |"<<endl;
     cout<<"|\t 1 \t"<<"|\t  -  \t"<<"|\t   -   \t|"<<endl;
     int randomDigitArrivalCalculatedData[randomDigitArrivalSize-1];
     for(int i = 0; i<randomDigitArrivalSize; i++){
@@ -104,6 +104,33 @@ int main() {
     }
     
     // Random digit arrival calculation end
+     cout<<"\n\n"<<endl;
+    //calculate random digit for service
+     int randomDigitServiceSize;
+     cout<<"Enter size of random digit service size:";
+     cin>>randomDigitServiceSize;
+     int randomDigitServiceData[randomDigitServiceSize];
+     int randomDigitServiceDataCalculated[randomDigitServiceSize];
+     
+     for(int i = 0; i<randomDigitServiceSize; i++){
+          cout<<"Enter random digit service for "<<i+1<<":";
+          cin>>randomDigitServiceData[i];
+     }
+     
+     cout<<"\n\n---------solution four-----------"<<endl;
+     cout<<"|\t C \t"<<"|\t R.D \t"<<"|\t S.T  \t|"<<endl;
+     
+     for(int i = 0; i<randomDigitServiceSize; i++){
+          for(int j = 0; j<disDataSize; j++){
+               if(disProbDataStore[j].first<=randomDigitServiceData[i] && randomDigitServiceData[i] <= disProbDataStore[j].second){
+                    randomDigitServiceDataCalculated[i] = j+1;
+                    break;
+               }
+          }
+          
+          cout<<"|\t "<<i+1<<" \t"<<"|\t  "<<randomDigitServiceData[i]<<"  \t"<<"|\t  "<<randomDigitServiceDataCalculated[i]<<"  \t|"<<endl;
+     }
+    //end calculation
     return 0;
 }
 
