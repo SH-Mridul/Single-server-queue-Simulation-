@@ -38,10 +38,6 @@ int main() {
     intervalProbDataStore[intervalSize-1].second = 1000;
     
     
-    
-    
-    cout<<"----------------------------------------------------------------"<<endl;
-    
     int disDataSize;
     cout<<"enter Distribution service size:";
     cin>>disDataSize;
@@ -131,6 +127,21 @@ int main() {
           cout<<"|\t "<<i+1<<" \t"<<"|\t  "<<randomDigitServiceData[i]<<"  \t"<<"|\t  "<<randomDigitServiceDataCalculated[i]<<"  \t|"<<endl;
      }
     //end calculation
+     
+     //main table calculation
+     int atCommulative = 0;
+     int stCommulative = 0;
+     
+     cout<<"\n\n-----------------------------------------final table-----------------------------------------------------"<<endl;
+     cout<<"|\t C \t"<<"|\t I.A.T \t"<<"|\t A.T \t"<<"|\t S.T \t"<<"|\t T.S.B \t"<<"|\t W.T \t"<<"|\t T.S.E \t"<<"|\t T.S.S \t"<<"|\t I.T.S \t|"<<endl;
+     for(int i = 0; i<randomDigitServiceSize; i++){
+      if(i<1){
+         cout<<"|\t"<<i+1<<"\t"<<"|\t   "<<"-"<<"   \t"<<"|\t "<<atCommulative<<"  \t"<<"|\t "<<randomDigitServiceDataCalculated[i]<<"\t\t"<<"|\t   "<<0<<"   \t"<<"|\t  "<<0<<" \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<0<<"   \t|"<<endl;
+      }else{
+          atCommulative += randomDigitArrivalCalculatedData[i-1];
+         cout<<"|\t"<<i+1<<"\t"<<"|\t   "<<randomDigitArrivalCalculatedData[i-1]<<"   \t"<<"|\t "<<atCommulative<<"  \t"<<"|\t "<<randomDigitServiceDataCalculated[i]<<"\t\t"<<"|\t   "<<"n"<<"   \t"<<"|\t  "<<"n"<<" \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<"n"<<"   \t|"<<endl; 
+      }
+     }
     return 0;
 }
 
