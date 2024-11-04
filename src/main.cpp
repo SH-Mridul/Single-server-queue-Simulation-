@@ -131,15 +131,25 @@ int main() {
      //main table calculation
      int atCommulative = 0;
      int stCommulative = 0;
-     
+     int tse = randomDigitServiceDataCalculated[0];
+     int tsb = 0;
+     int wt = 0;
+     int tss = 0;
+     int its = 0;
      cout<<"\n\n-----------------------------------------final table-----------------------------------------------------"<<endl;
      cout<<"|\t C \t"<<"|\t I.A.T \t"<<"|\t A.T \t"<<"|\t S.T \t"<<"|\t T.S.B \t"<<"|\t W.T \t"<<"|\t T.S.E \t"<<"|\t T.S.S \t"<<"|\t I.T.S \t|"<<endl;
      for(int i = 0; i<randomDigitServiceSize; i++){
       if(i<1){
-         cout<<"|\t"<<i+1<<"\t"<<"|\t   "<<"-"<<"   \t"<<"|\t "<<atCommulative<<"  \t"<<"|\t "<<randomDigitServiceDataCalculated[i]<<"\t\t"<<"|\t   "<<0<<"   \t"<<"|\t  "<<0<<" \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<0<<"   \t|"<<endl;
+         cout<<"|\t"<<i+1<<"\t"<<"|\t   "<<"-"<<"   \t"<<"|\t "<<atCommulative<<"  \t"<<"|\t "<<randomDigitServiceDataCalculated[i]<<"\t\t"<<"|\t   "<<0<<"   \t"<<"|\t  "<<0<<" \t"<<"|\t   "<<tse<<"   \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<0<<"   \t|"<<endl;
       }else{
           atCommulative += randomDigitArrivalCalculatedData[i-1];
-         cout<<"|\t"<<i+1<<"\t"<<"|\t   "<<randomDigitArrivalCalculatedData[i-1]<<"   \t"<<"|\t "<<atCommulative<<"  \t"<<"|\t "<<randomDigitServiceDataCalculated[i]<<"\t\t"<<"|\t   "<<"n"<<"   \t"<<"|\t  "<<"n"<<" \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<randomDigitServiceDataCalculated[i]<<"   \t"<<"|\t   "<<"n"<<"   \t|"<<endl; 
+          tsb = max(tse,atCommulative);
+          its = tsb-tse;
+          tse = randomDigitServiceDataCalculated[i]+tsb;
+          wt = tsb-atCommulative;
+          tss = tse-atCommulative;
+          
+          cout<<"|\t"<<i+1<<"\t"<<"|\t   "<<randomDigitArrivalCalculatedData[i-1]<<"   \t"<<"|\t "<<atCommulative<<"  \t"<<"|\t "<<randomDigitServiceDataCalculated[i]<<"\t\t"<<"|\t   "<<tsb<<"   \t"<<"|\t  "<<wt<<" \t"<<"|\t   "<<tse<<"   \t"<<"|\t   "<<tss<<"   \t"<<"|\t   "<<its<<"   \t|"<<endl; 
       }
      }
     return 0;
